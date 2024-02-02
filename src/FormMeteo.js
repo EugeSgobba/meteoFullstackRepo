@@ -22,11 +22,15 @@ const FormMeteo = () => {
   }, []);
 
   async function fetchComuni() {
-    const apiData = await client.graphql({ query: listComunes });
-    console.log(apiData);
-    const notesFromAPI = apiData.data.listNotes.items;
-    console.log(notesFromAPI);
-    setComuni(notesFromAPI);
+    try{
+      const apiData = await client.graphql({ query: listComunes });
+      console.log("apiData="+apiData);
+      const notesFromAPI = apiData.data.listComunes.items;
+      console.log("notesFromAPI="+notesFromAPI);
+      setComuni(notesFromAPI);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   // Stato per gestire la selezione dell'utente
@@ -106,8 +110,8 @@ const FormMeteo = () => {
                 </option>
                 {/* Mappa gli elementi dell'array per generare le opzioni del menu a tendina */}
                 {comuni.map((option, index) => (
-                  <option key={index} value={option.nome}>
-                    {option.nome}
+                  <option key={index} value={option.name}>
+                    {option.name}
                   </option>
                 ))}
               </select>

@@ -9,7 +9,6 @@ import './App.css';
 import TableMeteoGiorno3h from './TableMeteoGiorno3h';
 
 const client = generateClient();
-
 const FormMeteo = () => {
   
   const [lat, setLat] = useState(null);
